@@ -1,20 +1,15 @@
----
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: mysql-pod-deployment
+  name: mysql-pod
   namespace: sqldb
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      name: mysql
-  template:
-    metadata:
-      labels:
-        name: mysql
-    spec:
-      containers:
-      - name: mysql-pod-container
-        image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
-        
+  containers:
+  - name: mysql-pod-container
+    image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "password"
+    ports:
+    - containerPort: 3306
+  restartPolicy: Always
