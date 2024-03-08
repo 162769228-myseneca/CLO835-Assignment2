@@ -5,8 +5,10 @@ metadata:
   namespace: webapp
 spec:
   containers:
-  - image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
-    name: webapp-pod-container
-    resources: {}
+    - name: webapp-pod
+      image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
+      ports:
+        - containerPort: 80
+      resources: {}
   dnsPolicy: ClusterFirst
   restartPolicy: Always
