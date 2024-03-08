@@ -21,3 +21,5 @@ spec:
           value: "pw"
         ports:
         - containerPort: 3306
+      dnsPolicy: ClusterFirst  
+      restartPolicy: Always
