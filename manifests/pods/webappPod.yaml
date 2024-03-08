@@ -7,6 +7,17 @@ spec:
   containers:
     - name: webapp-pod
       image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
+      env:
+        - name: DB_HOST
+          value: "10.244.0.5"
+        - name: DB_PORT
+          value: "3306"
+        - name: DBUSER
+          value: "root"
+        - name: DATABASE
+          value: "employee"
+        - name: MYSQL_ROOT_PASSWORD
+          value: "rootpass"
       ports:
         - containerPort: 80
       resources: {}
