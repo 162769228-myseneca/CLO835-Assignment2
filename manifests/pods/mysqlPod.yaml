@@ -5,11 +5,12 @@ metadata:
   namespace: sqldb
 spec:
   containers:
-  - name: mysql-pod-container
+  - name: mysql-pod
     image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
     env:
     - name: MYSQL_ROOT_PASSWORD
-      value: "password"
+      value: "rootpass"
     ports:
     - containerPort: 3306
+  dnsPolicy: ClusterFirst  
   restartPolicy: Always
