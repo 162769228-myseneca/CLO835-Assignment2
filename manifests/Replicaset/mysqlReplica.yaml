@@ -16,5 +16,8 @@ spec:
       containers:
       - name: mysql-replica-container
         image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/mysql:v1
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "pw"
         ports:
         - containerPort: 3306
