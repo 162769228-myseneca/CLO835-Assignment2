@@ -1,19 +1,12 @@
----
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: webapp-pod-deployment
+  name: webapp-pod
   namespace: webapp
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      name: webapp
-  template:
-    metadata:
-      labels:
-        name: webapp
-    spec:
-      containers:
-      - name: webapp-pod-container
-        image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
+  containers:
+  - image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
+    name: webapp-pod-container
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
