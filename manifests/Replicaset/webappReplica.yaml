@@ -3,6 +3,9 @@ kind: ReplicaSet
 metadata:
   name: webapp-replicaset
   namespace: webapp
+  labels:
+    app: employees
+    version: v1
 spec:
   replicas: 3
   selector:
@@ -16,21 +19,20 @@ spec:
         version: v1
     spec:
       containers:
-        - name: mysql-replica-container
-          image: '937545311489.dkr.ecr.us-east-1.amazonaws.com/mysql:v1'
-          env:
-            - name: DBHOST
-              value: "10.244.0.25"
-            - name: DBPORT
-              value: "3306"
-            - name: DBUSER
-              value: "root"
-            - name: DATABASE
-              value: "employees"
-            - name: DBPWD
-              value: "pw"
-          ports:
-            - containerPort: 80
-          resources: {}
+      - name: webapp-replicaset
+        image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
+        env:
+        - name: DBHOST
+          value: "10.244.0.57"
+        - name: DBPORT
+          value: "3306"
+        - name: DATABASE
+          value: "employees"
+        - name: DBPWD
+          value: "pw"
+        - name: DBUSER
+          value: "root"
+        ports:
+        - containerPort: 80
       dnsPolicy: ClusterFirst
       restartPolicy: Always
