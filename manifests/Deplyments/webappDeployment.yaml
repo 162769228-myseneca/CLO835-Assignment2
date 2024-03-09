@@ -7,15 +7,18 @@ metadata:
   labels:
     app: employees
     week: week5
+    version: v1
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: employees
+      version: v1
   template:
     metadata:
       labels:
         app: employees
+        version: v1
     spec:
       containers:
       - name: webapp-deployementc
@@ -23,15 +26,14 @@ spec:
         env:
         - name: DBPWD
           value: "pw"
-        ports:
-        - containerPort: 80
-        env:
         - name: DBUSER
           value: root
         - name: DBHOST
-          value: "10.244.0.16, 10.244.0.15, 10.244.0.17"
+          value: "mysql-service.sqldb.svc.cluster.local"
         - name: DBPORT
           value: "3306"
+        ports:
+        - containerPort: 80
       dnsPolicy: ClusterFirst  
       restartPolicy: Always
 
