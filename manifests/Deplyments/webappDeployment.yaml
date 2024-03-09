@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  namespace: webapp
+  labels:
+    app: employees
+    week: week5
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+      - name: webapp-deployementC
+        image: 937545311489.dkr.ecr.us-east-1.amazonaws.com/webapp:v1
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "pw"
+        ports:
+        - containerPort: 8-
+      dnsPolicy: ClusterFirst  
+      restartPolicy: Always
