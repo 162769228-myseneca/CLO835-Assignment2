@@ -24,6 +24,6 @@ spec:
         - name: MYSQL_ROOT_PASSWORD
           value: "pw"
         ports:
-        - containerPort: 8-
+        - containerPort: 80
       dnsPolicy: ClusterFirst  
       restartPolicy: Always
